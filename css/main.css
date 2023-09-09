@@ -31,7 +31,7 @@ button {
 .stats {
     color: white;
     font-size: 17px;
-    font-weight: bold;
+  
 }
 .board-container {
     position: relative;
@@ -50,10 +50,18 @@ button {
     grid-gap: 20px;
 
 }
-.board-container.flippedd .board {
+.board-container.flipped .board {
     transform: rotateY(180deg) rotateZ(50deg);
 
 }
-.board-container.flippedd .win {
+.board-container.flipped .win {
     transform: rotateY(0) rotateZ(0);
 }
+
+.card {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
