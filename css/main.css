@@ -2,7 +2,35 @@ html {
     width: 100%;
     height: 100%;
     background: linear-gradient(325deg, #03001e 0%, #03c084 30%, #e658c0 70%, #54b7f0 100%);
+    background-color: cover;
+    
 }
+
+
+.main-title {
+    color: white;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 100px;
+    white-space: nowrap;
+        overflow: hidden;
+        animation: typing 5s steps(30, end) 1s forwards;
+}
+@keyframes typing {
+        from {
+            width: 0;
+        }
+
+        to {
+            width: 100%;
+        }
+    }
+   
+   
+
 .game {
     position: absolute;
     top: 50%;
@@ -15,8 +43,8 @@ html {
     margin-bottom: 20px;
 }
 button {
-    background-color:white;
-    color: rgb(90, 89, 89);
+    background-color:rgb(220, 238, 25);
+    /*color: rgb(90, 89, 89);*/
     border-radius: 5px;
     padding: 10px 30px;
     border: 0;
@@ -31,6 +59,7 @@ button {
 .stats {
     color: white;
     font-size: 17px;
+    font-family: helvetica;
   
 }
 .board-container {
@@ -48,6 +77,8 @@ button {
     display: grid;
     grid-template-columns: repeat(4, auto);
     grid-gap: 20px;
+    border: 1px solid black;
+    background-color: white;
 
 }
 .board-container.flipped .board {
@@ -63,6 +94,7 @@ button {
     width: 100px;
     height: 100px;
     cursor: pointer;
+    
 }
 .card-front,
 .card-back {
@@ -70,7 +102,9 @@ button {
     border-radius: 5px;
     width: 100%;
     height: 100%;
+    /*background-color: rgb(32, 29, 29);*/
     background-color: rgb(32, 29, 29);
+ 
     transition: transform .6s cubic-bezier(0.4, 0.0, 0.2, 1);
     backface-visibility: hidden;
 
@@ -83,6 +117,8 @@ button {
     text-align: center;
     line-height: 100px;
     background-color: white;
+    border: 2px solid black;
+
 }
 
 .card.flipped .card-front {
@@ -105,7 +141,7 @@ button {
     text-align: center;
     font-family: helvetica;
     font-size: 15px;
-    background-color: white;
+    background-color: rgb(184, 244, 247);
     transform: rotateY(180deg) rotateZ(50deg);
 
 
@@ -114,3 +150,4 @@ button {
 .highlight {
     color: #7303c0;
 }
+

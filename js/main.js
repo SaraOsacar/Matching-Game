@@ -45,3 +45,49 @@ const pickRandom = (array, items) => {
   return randomPicks;
 };
 
+const generateGame = () => {
+  const dimensions = selectors.board.getAttribute('data-dimension');
+
+  if (dimensions % 2 !== 0) {
+    throw new Error('The dimension of the board must be an even number.');
+  }
+  const emojis = ['🎻', '🎸', '🎹', '🪗', '🪕', '👩‍🎤', '🪘', '🎺', '🎼', '🎷'];
+  const picks = pickRandom(emojis, (dimensions * dimensions) / 2);
+  const items = shuffle([...picks, ...picks]);
+  const cards = `
+    <div class="board" style="grid-template-columns: repeat(${dimensions},auto)">
+    ${items
+      .map(
+        (item) => `
+    <div class="card">
+    <div class="card-front"></div>
+    <div class="card-back">${item}</div>
+    </div>
+    `
+      )
+      .join('')}
+</div>
+`;
+
+  const parser = new DOMParser().parseFromString(cards, 'text/html');
+  selectors.board.replaceWith(parser.querySelector('.board'));
+};
+
+const startGame = () => {
+  state.gameStarted = true;
+  selectors.start.classList.add('disabled');
+
+  state.loop = setInterval(() => {
+    state.totalTime++;
+
+    selectors.moves.innerText = `${state.totalFlips} moves`;
+    selectors.timer.innerHTML = `Time: ${state.totalTime} sec`;
+  }, 1000);
+};
+
+const disableCardInteractions = () => {
+  document.querySelectorAll('.card').forEach((card) => {
+    card.style.pointerEvents = 'none';
+  });
+};
+
