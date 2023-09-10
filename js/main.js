@@ -28,6 +28,7 @@ const shuffle = (array) => {
     clonedArray[i] = clonedArray[randomIndex];
     clonedArray[randomIndex] = original;
   }
+
   return clonedArray;
 };
 

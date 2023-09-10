@@ -64,4 +64,53 @@ button {
     height: 100px;
     cursor: pointer;
 }
+.card-front,
+.card-back {
+    position: absolute;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(32, 29, 29);
+    transition: transform .6s cubic-bezier(0.4, 0.0, 0.2, 1);
+    backface-visibility: hidden;
 
+}
+
+.card-back {
+    transform: rotateY(180deg) rotateZ(50deg);
+    font-size: 28x;
+    user-select: none;
+    text-align: center;
+    line-height: 100px;
+    background-color: white;
+}
+
+.card.flipped .card-front {
+    transform: rotateY(180deg) rotateZ(50deg);
+}
+
+.card.flipped .card-back {
+    transform: rotateY(0) rotateZ(0);
+}
+
+.win {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: helvetica;
+    font-size: 15px;
+    background-color: white;
+    transform: rotateY(180deg) rotateZ(50deg);
+
+
+}
+
+.highlight {
+    color: #7303c0;
+}
