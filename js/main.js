@@ -108,3 +108,44 @@ const flipBackCards = () => {
   }, 1000);
 };
 
+const flipCard = (card) => {
+  if (!card || card.classList.contains('matched')) {
+    return;
+  }
+
+  if (!state.gameStarted) {
+    startGame();
+  }
+
+  card.classList.add('flipped');
+  state.flippedCards++;
+  state.totalFlips++;
+
+  if (state.flippedCards === 2) {
+    const flippedCards = document.querySelectorAll('.flipped:not(.matched)');
+    if (flippedCards[0].innerHTML === flippedCards[1].innerHTML) {
+      // matchean las que coinciden
+      flippedCards[0].classList.add('matched');
+      flippedCards[1].classList.add('matched');
+    }
+    setTimeout(() => {
+      flipBackCards();
+    }, 1000);
+  }
+
+  if (!document.querySelectorAll('.card:not(.flipped)').length) {
+    setTimeout(() => {
+      selectors.boardContainer.classList.add('flipped');
+      selectors.win.innerHTML = `
+                <span class="win-text">
+                Congrats, you won!<br />
+                with <span class="highlight">${state.totalFlips}</span>
+                moves<br />
+                under <span class="highlight">${state.totalTime}</span>
+                seconds
+                </span>
+                `;
+      clearInterval(state.loop);
+    }, 1000);
+  }
+};
