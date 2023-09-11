@@ -90,4 +90,21 @@ const disableCardInteractions = () => {
     card.style.pointerEvents = 'none';
   });
 };
+const enableCardInteractions = () => {
+  document.querySelectorAll('.card').forEach((card) => {
+    card.style.pointerEvents = 'auto';
+  });
+};
+
+const flipBackCards = () => {
+  const flippedCards = document.querySelectorAll('.flipped:not(.matched)');
+
+  setTimeout(() => {
+    flippedCards.forEach((card) => {
+      card.classList.remove('flipped');
+    });
+    state.flippedCards = 0;
+    enableCardInteractions();
+  }, 1000);
+};
 
