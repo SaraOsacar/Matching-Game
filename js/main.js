@@ -1,12 +1,12 @@
 'use strict';
 
-
 const selectors = {
   boardContainer: document.querySelector('.board-container'),
   board: document.querySelector('.board'),
   moves: document.querySelector('.moves'),
   timer: document.querySelector('.timer'),
-  start: document.querySelector('button'), 
+  startButton: document.querySelector('.start-button'),
+  resetButton: document.querySelector('.reset-button'),
   win: document.querySelector('.win'),
 };
 
@@ -75,7 +75,7 @@ const generateGame = () => {
 
 const startGame = () => {
   state.gameStarted = true;
-  selectors.start.classList.add('disabled');
+  selectors.startButton.classList.add('disabled');
 
   state.loop = setInterval(() => {
     state.totalTime++;
@@ -167,6 +167,28 @@ const attachEventListeners = () => {
     }
   });
 };
+
+const resetGame = () => {
+  clearInterval(state.loop);
+  state.gameStarted = false;
+  state.flippedCards = 0;
+  state.totalFlips = 0;
+  state.totalTime = 0;
+  selectors.startButton.classList.remove('disabled');
+  selectors.moves.innerText = '0 moves';
+  selectors.timer.innerText = 'Time: 0 sec';
+  selectors.boardContainer.classList.remove('flipped');
+  selectors.win.innerHTML = '';
+
+  document.querySelectorAll('.card').forEach((card) => {
+    card.classList.remove('flipped', 'matched');
+    card.style.pointerEvents = 'auto';
+  });
+
+  generateGame();
+};
+
+selectors.resetButton.addEventListener('click', resetGame);
 
 generateGame();
 attachEventListeners();
